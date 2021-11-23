@@ -1,3 +1,4 @@
+package bot;
 
 public class MainMethod {
 
