@@ -1,8 +1,11 @@
 package bot;
 
+import java.awt.Desktop;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.prefs.BackingStoreException;
 import java.util.prefs.Preferences;
 
@@ -10,6 +13,9 @@ import twitter4j.Twitter;
 import twitter4j.TwitterException;
 import twitter4j.auth.AccessToken;
 import twitter4j.auth.RequestToken;
+
+
+
 
 public class Authenticator {
 	public void authenticate(Twitter twitter) {
@@ -67,9 +73,18 @@ public class Authenticator {
 		AccessToken accessToken = null;
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		while(accessToken == null) {
-			System.out.println("Open the following URL to allow this program to access your account:");
+			
 			System.out.println(requestToken.getAuthorizationURL());
 			System.out.println("Enter the PIN (if available) and hit enter after you have granted access. [PIN] ");
+			try {
+				Desktop.getDesktop().browse(new URI(requestToken.getAuthenticationURL()));
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (URISyntaxException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			try {
 				String PIN = br.readLine();
 				if(PIN.length()>0) {
