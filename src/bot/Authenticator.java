@@ -58,7 +58,6 @@ public class Authenticator {
 		}
 		prefs.put("key", accessToken.getToken());
 		prefs.put("secret", accessToken.getTokenSecret());
-		System.out.println("You're in!");
 	}
 	
 	/*
