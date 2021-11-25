@@ -8,6 +8,4 @@ public class MainMethod{
 		Bot bot = new Bot();
 	}
 
-	
-
 }

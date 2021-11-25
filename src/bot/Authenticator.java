@@ -21,18 +21,13 @@ public class Authenticator {
 	public void authenticate(Twitter twitter) {
 		//pull the key and secet from preferences
 		Preferences prefs = Preferences.userRoot().node(this.getClass().getName());
-		try {
-			prefs.clear();
-		} catch (BackingStoreException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+
 		//If user hasn't been authenticated then key & secret will be null.
 		String key = prefs.get("key", null);
 		String secret = prefs.get("secret", null);
 		AccessToken accessToken = null;
-		twitter.setOAuthConsumer("AxLv4DFZmDBbPdYE88QXRjFdC", 
-				"fek3cBG5RXwBAkt9bUPOfdN3pKIfwoZ0uSmRsEhhMbUhkezAla"); //programs key and secret
+		twitter.setOAuthConsumer("7ezq8w1gWS92oBiK4OrGhEhrW", 
+				"oMPrrqn0LBsL6nrrbE2sUf2QKy3d1LWkJrrekrMsIHGJbuUMBs"); //programs key and secret
 		if(key!=null && secret != null) {
 			//User has already been authenticated
 			accessToken = new AccessToken(key, secret);
