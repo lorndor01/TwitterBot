@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 
 import exceptions.PostTooLongException;
+import javafx.stage.Stage;
 import twitter4j.Query;
 import twitter4j.QueryResult;
 import twitter4j.Status;
@@ -18,22 +19,15 @@ import twitter4j.TwitterFactory;
 public class Bot {
 	//persistent OAuth token.
 	private Twitter twitter;
+	private Stage stage;
 
-	public Bot() {
+	public Bot(Stage stage) {
+		this.stage = stage;
 		twitter = new TwitterFactory().getInstance();
 		Authenticator auth = new Authenticator();
-		auth.authenticate(twitter);   
+		auth.authenticate(twitter, stage);   
 		String message = "This is my dog";
-		try {
-			File file = new File("src/bot/media/dog.jpg");
-			post(message, file);
-		} catch (TwitterException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (PostTooLongException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		 
 	}
 	
 	public void post(String message) throws TwitterException, PostTooLongException{
