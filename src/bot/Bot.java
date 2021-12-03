@@ -2,14 +2,9 @@ package bot;
 
 
 import java.io.File;
-import java.text.SimpleDateFormat;
-import java.util.List;
 
 import exceptions.PostTooLongException;
 import javafx.stage.Stage;
-import twitter4j.Query;
-import twitter4j.QueryResult;
-import twitter4j.Status;
 import twitter4j.StatusUpdate;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
@@ -20,16 +15,16 @@ public class Bot {
 	//persistent OAuth token.
 	private Twitter twitter;
 	private Stage stage;
-
+	public final static String TWITTER_BOT_ICON_PATH = "bot/media/twitter_bot.png";
 	public Bot(Stage stage) {
 		this.stage = stage;
 		twitter = new TwitterFactory().getInstance();
 		Authenticator auth = new Authenticator();
-		auth.authenticate(twitter, stage);   
+		auth.authenticate(twitter, stage);
 		String message = "This is my dog";
-		 
+
 	}
-	
+
 	public void post(String message) throws TwitterException, PostTooLongException{
 		File defaultMedia = null;
 		post(message, defaultMedia);
@@ -46,5 +41,5 @@ public class Bot {
 			twitter.updateStatus(su);
 		}
 	}
-	
+
 }

@@ -13,7 +13,7 @@ public class MainMethod extends Application{
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		// TODO Auto-generated method stub
-		Bot bot = new Bot(primaryStage); 
+		Bot bot = new Bot(primaryStage);
 	}
 
 }

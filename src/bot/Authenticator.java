@@ -1,9 +1,7 @@
 package bot;
 
 import java.awt.Desktop;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.prefs.BackingStoreException;
@@ -13,10 +11,8 @@ import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import javafx.event.ActionEvent;
-import javafx.event.Event;
-import javafx.event.EventHandler;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
 import twitter4j.auth.AccessToken;
@@ -44,14 +40,14 @@ public class Authenticator {
 		String key = prefs.get("key", null);
 		String secret = prefs.get("secret", null);
 		AccessToken accessToken = null;
-		twitter.setOAuthConsumer("7ezq8w1gWS92oBiK4OrGhEhrW", 
+		twitter.setOAuthConsumer("7ezq8w1gWS92oBiK4OrGhEhrW",
 				"oMPrrqn0LBsL6nrrbE2sUf2QKy3d1LWkJrrekrMsIHGJbuUMBs"); //programs key and secret
 		if(key!=null && secret != null) {
 			//User has already been authenticated
 			accessToken = new AccessToken(key, secret);
-			twitter.setOAuthAccessToken(accessToken); 
+			twitter.setOAuthAccessToken(accessToken);
 		}
- 
+
 		/*
 		 * By now we either have a completed OAuth sequence and null AccessToken OR
 		 * we have a valid non-null AccessToken
@@ -60,19 +56,22 @@ public class Authenticator {
 			//If request token is already avaiable then an IllegalStateException will be thrown
 			RequestToken requestToken = twitter.getOAuthRequestToken();
 			SceneBuilder sb = new SceneBuilder();
-			Scene scene = sb.getOAuthScene(twitter, requestToken, prefs, stage);
+			Scene scene = sb.getOAuthScene(twitter, requestToken, prefs, stage, requestToken.getAuthenticationURL());
 			stage.setScene(scene);
+			stage.setTitle("Authentication");
+			stage.setResizable(false);
+			addIcon(stage);
 			stage.show();
 			if(accessToken == null) {
-				try {
-					Desktop.getDesktop().browse(new URI(requestToken.getAuthenticationURL()));
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} catch (URISyntaxException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+//				try {
+//					Desktop.getDesktop().browse(new URI(requestToken.getAuthenticationURL()));
+//				} catch (IOException e1) {
+//					// TODO Auto-generated catch block
+//					e1.printStackTrace();
+//				} catch (URISyntaxException e1) {
+//					// TODO Auto-generated catch block
+//					e1.printStackTrace();
+//				}
 			}
 		}
 		catch(IllegalStateException e) {
@@ -88,4 +87,9 @@ public class Authenticator {
 		}
 	}
 	
+	private void addIcon(Stage stage) {
+		Image icon = new Image(Bot.TWITTER_BOT_ICON_PATH);
+		stage.getIcons().add(icon);
+	}
+
 }

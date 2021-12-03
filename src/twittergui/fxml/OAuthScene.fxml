@@ -5,11 +5,12 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="125.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="12.0" layoutY="14.0" text="Please authorize the TwitterBot and enter in the PIN:" />
       <TextField fx:id="PINTextBox" alignment="CENTER" layoutX="75.0" layoutY="37.0" />
       <Button fx:id="submitButton" layoutX="123.0" layoutY="63.0" mnemonicParsing="false" onAction="#onSubmitButton" text="Submit" />
-      <Label layoutX="14.0" layoutY="102.0" text="If browser did not open click here -&gt; " textAlignment="CENTER" textFill="RED" />
+      <Label layoutX="16.0" layoutY="89.0" text="If browser did not open then search URL manually:" textAlignment="CENTER" textFill="RED" />
+      <Button fx:id="copyLinkButton" layoutX="116.0" layoutY="107.0" mnemonicParsing="false" onAction="#copyLink" text="Copy Link" />
    </children>
 </AnchorPane>
